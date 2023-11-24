@@ -19,6 +19,7 @@ char isAddOp(char);
 char isMulOp(char);
 int expression();
 int term();
+int factor();
 
 /* PROGRAMA PRINCIPAL */
 /*
@@ -26,7 +27,7 @@ int term();
     
     # <expression> ::= <term> [<addop> <term>]*
     # <term> ::= <factor> [<mulop> <factor>]*
-    # <factor> ::= <NUM> | (<expression)
+    # <factor> ::= <NUM> | (<expression) | <variable>
 */  
 int main()
 {
@@ -81,6 +82,24 @@ int term() {
             val /= getNum();
             break;
         }
+    }
+    return val;
+}
+
+/*
+    1. <factor> ::= <NUM> | (<expression>) // avalia um fator
+    2. <factor> ::= <NUM> | (<expression>) | <variable> // avalia e traduz um fator
+*/
+int factor() {
+    int val;
+    if (look = '(') {
+        match('(');
+        val = expression();
+        match(')');
+    } else if (isalpha(look)) {
+        emit("MOV AX, [%c]", getName());
+    }  else {
+        emit("MOV AX, %c", getNum());
     }
     return val;
 }
