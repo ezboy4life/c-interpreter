@@ -1,0 +1,16 @@
+*.d
+*.slo
+*.lo
+*.o
+*.obj
+*.gch
+*.pch
+*.so
+*.dylib
+*.dll
+# Executaveis
+*.exe
+*.out
+*.app
+# Extras
+.vscode
