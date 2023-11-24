@@ -21,6 +21,13 @@ int expression();
 int term();
 
 /* PROGRAMA PRINCIPAL */
+/*
+    -> Tabela de definições (mais atualizada)
+    
+    # <expression> ::= <term> [<addop> <term>]*
+    # <term> ::= <factor> [<mulop> <factor>]*
+    # <factor> ::= <NUM> | (<expression)
+*/  
 int main()
 {
 	init();
@@ -30,8 +37,8 @@ int main()
 
 /*
     Avalia o resultado de uma expressão
-    1. <expression> := num
-    2. <expression> := 
+    1. <expression> ::= NUM [<addop> NUM]*
+    2. <expression> ::= <term> [<addop> <term>]*
 */
 int expression() {
     int val;
@@ -56,6 +63,10 @@ int expression() {
     return val;
 }
 
+/*
+    Avalia um termo
+    <term ::= <NUM> [<mulop> <NUM>]*
+*/
 int term() {
     int val;
     val = getNum();
