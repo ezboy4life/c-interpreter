@@ -39,7 +39,7 @@ void output();
 */  
 int main()
 {
-	init();
+    init();
     do {
         switch (look) {
             case '?':
@@ -51,8 +51,6 @@ int main()
             default:
                 assignment();
         }
-
-        assignment();
         newLine();
     } while (look != ';');  /* no slide da aula tava pra usar '.', mas eu quero ';' - ezboy =) */
 	return 0;
