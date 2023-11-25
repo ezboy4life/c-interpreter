@@ -26,6 +26,8 @@ int factor();
 void assignment();
 void printVar(char name);
 void newLine();
+void input();
+void output();
 
 /* PROGRAMA PRINCIPAL */
 /*
@@ -39,6 +41,17 @@ int main()
 {
 	init();
     do {
+        switch (look) {
+            case '?':
+                input();
+                break;
+            case '!':
+                output();
+                break;
+            default:
+                assignment();
+        }
+
         assignment();
         newLine();
     } while (look != ';');  /* no slide da aula tava pra usar '.', mas eu quero ';' - ezboy =) */
@@ -228,6 +241,24 @@ int getNum()
         nextChar();
     }
     return i;
+}
+
+/* comando pra input, uso: ?<var> */
+void input() {
+    char name;
+    char buffer[20];
+    match('?');
+    name = getName();
+    printf("%c? ", name);   /* isso é opcional mas é interessante pro usuário */
+    fgets(buffer, 20, stdin);
+    var[name - 'A'] = atoi(buffer); /*atoi == argument to integer */
+}
+
+void output() {
+    char name;
+    match('!');
+    name = getName();
+    printf("%c -> %d\n", name, var[name - 'A']);
 }
 
 /* emite uma instrução seguida por uma nova linha */
