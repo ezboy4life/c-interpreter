@@ -25,6 +25,7 @@ int term();
 int factor();
 void assignment();
 void printVar(char name);
+void newLine();
 
 /* PROGRAMA PRINCIPAL */
 /*
@@ -37,8 +38,10 @@ void printVar(char name);
 int main()
 {
 	init();
-    assignment();
-    printVar('a');
+    do {
+        assignment();
+        newLine();
+    } while (look != ';');  /* no slide da aula tava pra usar '.', mas eu quero ';' - ezboy =) */
 	return 0;
 }
 
@@ -117,6 +120,12 @@ void assignment() {
     name = getName();
     match('=');
     var[name - 'A'] = expression();
+}
+
+/* captura um caracter de nova linha */
+void newLine() {
+    if (look == '\n')
+        nextChar();
 }
 
 /* inicialização do compilador */
