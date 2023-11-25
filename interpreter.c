@@ -4,9 +4,12 @@
 #include <ctype.h>
 
 char look; /* O caracter lido "antecipadamente" (lookahead) */
+#define MAXVAR 26
+int var[MAXVAR];
 
 /* protótipos */
 void init();
+void initVar();
 void nextChar();
 void error(const char* fmt, ...);
 void fatal(const char* fmt, ...);
@@ -20,6 +23,8 @@ char isMulOp(char);
 int expression();
 int term();
 int factor();
+void assignment();
+void printVar(char name);
 
 /* PROGRAMA PRINCIPAL */
 /*
@@ -32,7 +37,8 @@ int factor();
 int main()
 {
 	init();
-    printf("%d",expression());
+    assignment();
+    printVar('a');
 	return 0;
 }
 
@@ -96,18 +102,34 @@ int factor() {
         match('(');
         val = expression();
         match(')');
-    } else if (isalpha(look)) {
-        emit("MOV AX, [%c]", getName());
-    }  else {
-        emit("MOV AX, %c", getNum());
+    } else {
+        if (isalpha(look))             
+            val = var[getName() - 'A'];
+        else             
+            val = getNum();
     }
     return val;
+}
+
+/* avalia um comando de atribuição */
+void assignment() {
+    char name;
+    name = getName();
+    match('=');
+    var[name - 'A'] = expression();
 }
 
 /* inicialização do compilador */
 void init()
 {
+    initVar();
 	nextChar();
+}
+
+void initVar() {
+    for (int i = 0; i < sizeof(var) / sizeof(var[0]); i++) {
+        var[i] = 0;
+    }
 }
 
 /* lê próximo caracter da entrada */
@@ -217,4 +239,11 @@ char isAddOp(char x) {
 }
 char isMulOp(char x) {
 	return (x == '*' || x == '/');
+}
+
+void printVar(char name) {
+    if (!isalpha(name))
+		expected("Name");
+    name = toupper(name);
+    printf("%d", var[name - 'A']);
 }
