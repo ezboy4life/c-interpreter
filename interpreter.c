@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <ctype.h>
+#include <string.h>
 
 char look; /* O caracter lido "antecipadamente" (lookahead) */
 #define MAXVAR 26
@@ -44,9 +45,22 @@ void parseFileName(); // Versão Large
     # <term> ::= <factor> [<mulop> <factor>]*
     # <factor> ::= <NUM> | (<expression) | <variable>
 */
-int main()
+int main(int argc, char *argv[])
 {
-    init();
+    // init();
+
+    switch (argc) {
+        case 1: 
+            init();
+            break;
+        case 2:
+            readingFromFile = 1;
+            fileIn = fopen(argv[1], "r");
+            nextChar();
+            break;
+        default:    /* NÃO VOU IMPLEMENTAR MAIS DE 1 ARGUMENTO HAHAHA -EZMONEY */
+            expected("Only one argument");
+    }
     do
     {
         switch (look)
@@ -202,8 +216,7 @@ void nextChar()
         char ch = fgetc(fileIn);
         if (ch != EOF)
             look = ch;
-        else
-        {
+        else {
             look = '\n';
             fclose(fileIn);
             readingFromFile = 0;

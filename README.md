@@ -10,4 +10,4 @@ Esse interpretador simples foi desenvolvido na universidade Unifenas pelos aluno
 - Aceita espaços em brancos entre os comandos ✅
 - Aceita linhas em branco no código ✅
 - Executa o código fonte existente em um arquivo de texto separado ✅ (@'test.txt')
-- O interpretador é executado em prompt: `C:/Compiladores> interpretador arquivo.prg` ❌
+- O interpretador é executado em prompt: `C:/Compiladores> interpretador arquivo.prg` ✅
