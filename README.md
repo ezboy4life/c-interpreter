@@ -7,7 +7,7 @@ Esse interpretador simples foi desenvolvido na universidade Unifenas pelos aluno
 - 3 Tipos de comandos de programação. ✅
 - 26 variáveis. ✅
 - Comandos de entrada e saída (input/output). ✅
-- Aceita espaços em brancos entre os comandos ❌
-- Aceita linhas em branco no código ❌
-- Executa o código fonte existente em um arquivo de texto separado ❌
+- Aceita espaços em brancos entre os comandos ✅
+- Aceita linhas em branco no código ✅
+- Executa o código fonte existente em um arquivo de texto separado ✅ (@'test.txt')
 - O interpretador é executado em prompt: `C:/Compiladores> interpretador arquivo.prg` ❌
